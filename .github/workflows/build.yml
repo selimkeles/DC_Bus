@@ -29,6 +29,14 @@ jobs:
             "$KICAD_IMAGE" \
             kicad-cli sch export pdf -o output/schematic.pdf DCBus.kicad_sch
 
+      - name: Generate BOM
+        run: |
+          mkdir -p output
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli sch export bom --group-by "Footprint" --fields "Reference,Value,Footprint,QUANTITY,DNP,Datasheet" -o output/bom.csv DCBus.kicad_sch
+
       - name: Generate gerbers and drill files
         run: |
           mkdir -p "$RUNNER_TEMP/gerbers"
@@ -70,6 +78,7 @@ jobs:
             output/schematic.pdf
             output/erc.json
             output/drc.json
+            output/bom.csv
           if-no-files-found: warn
 
       - name: Create GitHub release

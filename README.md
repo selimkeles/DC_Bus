@@ -62,3 +62,9 @@ Design checks:
 kicad-cli sch erc --format json --severity-all -o output/erc.json DCBus.kicad_sch
 kicad-cli pcb drc --format json --severity-all -o output/drc.json DCBus.kicad_pcb
 ```
+
+BOM:
+
+```sh
+kicad-cli sch export bom --group-by "Footprint" --fields "Reference,Value,Footprint,QUANTITY,DNP,Datasheet" -o output/bom.csv DCBus.kicad_sch
+```
