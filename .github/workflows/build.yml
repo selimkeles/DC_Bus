@@ -1,0 +1,109 @@
+name: KiCad Build
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  KICAD_IMAGE: kicad/kicad:10.0.8-full
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Generate schematic PDF
+        run: |
+          mkdir -p output
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli sch export pdf -o output/schematic.pdf DCBus.kicad_sch
+
+      - name: Generate gerbers and drill files
+        run: |
+          mkdir -p output/gerbers
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli pcb export gerbers \
+            --layers F.Cu,B.Cu,F.Paste,B.Paste,F.Silkscreen,B.Silkscreen,F.Mask,B.Mask,Edge.Cuts \
+            -o output/gerbers DCBus.kicad_pcb
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli pcb export drill --generate-report \
+            --report-path output/gerbers/DCBus-drill.rpt \
+            -o output/gerbers DCBus.kicad_pcb
+          cd output/gerbers
+          python3 -m zipfile -c ../DCBus-gerbers.zip *
+
+      - name: Run ERC and DRC
+        run: |
+          mkdir -p output
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli sch erc --format json --severity-all \
+            -o output/erc.json DCBus.kicad_sch
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli sch erc --format report --severity-all \
+            -o output/erc.rpt DCBus.kicad_sch
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli pcb drc --format json --severity-all \
+            -o output/drc.json DCBus.kicad_pcb
+          docker run --rm --user root -e HOME=/home/kicad \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            kicad-cli pcb drc --format report --severity-all \
+            -o output/drc.rpt DCBus.kicad_pcb
+          python3 scripts/summarize_checks.py
+
+      - name: Render board
+        run: |
+          mkdir -p output
+          docker run --rm --user root -e HOME=/home/kicad \
+            -e LIBGL_ALWAYS_SOFTWARE=1 \
+            -v "$PWD:/workspace" -w /workspace \
+            "$KICAD_IMAGE" \
+            bash -lc 'apt-get update && apt-get install -y --no-install-recommends xvfb xauth libgl1-mesa-dri && xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" kicad-cli pcb render --output output/board.png --rotate "-45,0,135" --width 1920 --height 1080 DCBus.kicad_pcb'
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kicad-build
+          path: |
+            output/schematic.pdf
+            output/board.png
+            output/gerbers/
+            output/DCBus-gerbers.zip
+            output/erc.json
+            output/erc.rpt
+            output/drc.json
+            output/drc.rpt
+            output/check-summary.md
+          if-no-files-found: warn
+
+      - name: Create GitHub release
+        if: success() && github.ref == 'refs/heads/master'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}-${{ github.run_attempt }}
+          name: Build ${{ github.run_number }}
+          target_commitish: ${{ github.sha }}
+          generate_release_notes: true
+          files: output/DCBus-gerbers.zip
