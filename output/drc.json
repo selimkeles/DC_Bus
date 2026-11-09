@@ -1,0 +1,201 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-10T01:19:46",
+    "ignored_checks": [],
+    "included_severities": [
+        "error",
+        "warning",
+        "exclusion"
+    ],
+    "kicad_version": "10.0.7",
+    "schematic_parity": [],
+    "source": "DCBus.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 2.4640 mm)",
+            "items": [
+                {
+                    "description": "Track [NEUT] on B.Cu, length 6.6274 mm",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "6b6d8ad7-a217-48b5-b055-ddc5aa21f714"
+                },
+                {
+                    "description": "PTH pad 4 [/LINE_SW] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 93.98
+                    },
+                    "uuid": "c9c30928-514a-4cc3-955e-a39f823cbc16"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 2.4640 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 3 [NEUT] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "76e042c2-dc40-4127-84e9-a86459973fac"
+                },
+                {
+                    "description": "Track [GND] on B.Cu, length 4.8026 mm",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 104.14
+                    },
+                    "uuid": "ade0ad3d-3a43-4591-a09f-70b9898975f3"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [+VDC] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 109.22
+                    },
+                    "uuid": "600208a0-d265-42c0-b6e5-328e5b6fa53a"
+                },
+                {
+                    "description": "PTH pad 2 [GND] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 104.14
+                    },
+                    "uuid": "6c0a1634-c531-4175-a84f-9f1b7a9399af"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 1 [+VDC] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 109.22
+                    },
+                    "uuid": "600208a0-d265-42c0-b6e5-328e5b6fa53a"
+                },
+                {
+                    "description": "PTH pad 2 [GND] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 104.14
+                    },
+                    "uuid": "6c0a1634-c531-4175-a84f-9f1b7a9399af"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 2 [GND] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 104.14
+                    },
+                    "uuid": "6c0a1634-c531-4175-a84f-9f1b7a9399af"
+                },
+                {
+                    "description": "PTH pad 3 [NEUT] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "76e042c2-dc40-4127-84e9-a86459973fac"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 2 [GND] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 104.14
+                    },
+                    "uuid": "6c0a1634-c531-4175-a84f-9f1b7a9399af"
+                },
+                {
+                    "description": "PTH pad 3 [NEUT] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "76e042c2-dc40-4127-84e9-a86459973fac"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 3 [NEUT] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "76e042c2-dc40-4127-84e9-a86459973fac"
+                },
+                {
+                    "description": "PTH pad 4 [/LINE_SW] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 93.98
+                    },
+                    "uuid": "c9c30928-514a-4cc3-955e-a39f823cbc16"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        },
+        {
+            "description": "Clearance violation (netclass 'Power_HV' clearance 2.5000 mm; actual 1.8800 mm)",
+            "items": [
+                {
+                    "description": "PTH pad 3 [NEUT] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 99.06
+                    },
+                    "uuid": "76e042c2-dc40-4127-84e9-a86459973fac"
+                },
+                {
+                    "description": "PTH pad 4 [/LINE_SW] of D3",
+                    "pos": {
+                        "x": 130.452439,
+                        "y": 93.98
+                    },
+                    "uuid": "c9c30928-514a-4cc3-955e-a39f823cbc16"
+                }
+            ],
+            "severity": "error",
+            "type": "clearance"
+        }
+    ]
+}
