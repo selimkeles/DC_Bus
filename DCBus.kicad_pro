@@ -52,21 +52,21 @@
         "zones": {
           "border_display_style": 2,
           "border_hatch_pitch": 0.5,
-          "corner_radius": 0.0,
-          "corner_smoothing": 0,
+          "corner_radius": 2.0,
+          "corner_smoothing": 1,
           "fill_mode": 0,
           "hatch_gap": 1.5,
           "hatch_orientation": 0.0,
           "hatch_smoothing_level": 0,
           "hatch_smoothing_value": 0.1,
           "hatch_thickness": 1.0,
-          "min_clearance": 1.0,
+          "min_clearance": 0.75,
           "min_island_area": 10.0,
           "min_thickness": 0.25,
           "pad_connection": 2,
           "remove_islands": 0,
-          "thermal_relief_gap": 0.5,
-          "thermal_relief_spoke_width": 0.5
+          "thermal_relief_gap": 0.1,
+          "thermal_relief_spoke_width": 1.5
         }
       },
       "diff_pair_dimensions": [
@@ -170,7 +170,7 @@
           "td_onpthpad": true,
           "td_onroundshapesonly": false,
           "td_onsmdpad": true,
-          "td_ontrackend": false,
+          "td_ontrackend": true,
           "td_onvia": true
         }
       ],
@@ -202,7 +202,7 @@
         {
           "td_allow_use_two_tracks": true,
           "td_curve_segcount": 0,
-          "td_enabled": false,
+          "td_enabled": true,
           "td_height_ratio": 1.0,
           "td_length_ratio": 0.5,
           "td_maxheight": 2.0,
@@ -214,13 +214,17 @@
       ],
       "track_widths": [
         0.0,
-        0.25,
-        0.5,
-        0.75,
-        1.0,
-        2.0,
-        3.0,
-        4.0
+        0.254,
+        0.381,
+        0.508,
+        0.635,
+        1.27,
+        2.54,
+        3.81,
+        4.572,
+        5.08,
+        6.35,
+        7.62
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -283,7 +287,7 @@
       "internal_id": "",
       "mfg": "",
       "mpn": "",
-      "sch_revision": ""
+      "sch_revision": "0.1"
     },
     "layer_pairs": [],
     "layer_presets": [],
@@ -303,7 +307,32 @@
     "equivalence_files": []
   },
   "erc": {
-    "erc_exclusions": [],
+    "erc_exclusions": [
+      [
+        "missing_input_pin|1574800|469900|426c14e6-d387-4122-af2b-e30f4ce36752|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ],
+      [
+        "missing_unit|1574800|469900|426c14e6-d387-4122-af2b-e30f4ce36752|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ],
+      [
+        "power_pin_not_driven|342900|317500|64bc5d0a-1a4b-4ddb-9638-e09954b46c40|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ],
+      [
+        "power_pin_not_driven|342900|469900|612f9520-29c2-4b9a-89d7-ed8308d78d3b|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ],
+      [
+        "power_pin_not_driven|419100|660400|446318c2-960a-4f25-a89f-703e46e57756|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ],
+      [
+        "power_pin_not_driven|774700|228600|736cdc9c-1dcc-4418-b303-c9a3525edc56|00000000-0000-0000-0000-000000000000|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|/085c23a9-2b77-46d5-99ae-42ca498b2f3f|",
+        ""
+      ]
+    ],
     "meta": {
       "version": 0
     },
@@ -489,7 +518,7 @@
       "endpoint_off_grid": "warning",
       "extra_units": "error",
       "field_name_whitespace": "warning",
-      "footprint_filter": "ignore",
+      "footprint_filter": "error",
       "footprint_link_issues": "warning",
       "four_way_junction": "warning",
       "ground_pin_not_ground": "warning",
@@ -539,7 +568,7 @@
     "classes": [
       {
         "bus_width": 12,
-        "clearance": 0.2,
+        "clearance": 0.1,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -550,19 +579,19 @@
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "priority": 2147483647,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.2,
+        "track_width": 0.254,
         "tuning_profile": "",
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
       },
       {
-        "clearance": 1.75,
+        "clearance": 2.5,
         "name": "Power_HV",
         "pcb_color": "rgb(0, 255, 0)",
         "priority": 1,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 2.0,
+        "track_width": 2.032,
         "tuning_profile": "",
         "via_diameter": 1.2,
         "via_drill": 0.6
@@ -572,7 +601,7 @@
         "pcb_color": "rgb(0, 0, 255)",
         "priority": 0,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.75,
+        "track_width": 0.254,
         "tuning_profile": "",
         "via_diameter": 0.8,
         "via_drill": 0.4
@@ -582,7 +611,6 @@
         "pcb_color": "rgb(255, 0, 0)",
         "priority": 2,
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 0.25,
         "tuning_profile": ""
       }
     ],
@@ -594,11 +622,39 @@
     "netclass_patterns": [
       {
         "netclass": "Power_HV",
-        "pattern": "/DCBus*|LINE|NEUT|/LINE_RELAY"
+        "pattern": "+VDC"
+      },
+      {
+        "netclass": "Power_HV",
+        "pattern": "LINE"
+      },
+      {
+        "netclass": "Power_HV",
+        "pattern": "/LINE_F"
+      },
+      {
+        "netclass": "Power_HV",
+        "pattern": "/LINE_SW"
+      },
+      {
+        "netclass": "Power_HV",
+        "pattern": "NEUT"
       },
       {
         "netclass": "Power_LV",
-        "pattern": "/PS_VCC"
+        "pattern": "+12V"
+      },
+      {
+        "netclass": "Signal",
+        "pattern": "/Bus_Ref"
+      },
+      {
+        "netclass": "Signal",
+        "pattern": "/Comp_Output"
+      },
+      {
+        "netclass": "Power_LV",
+        "pattern": "/Relay Status"
       }
     ]
   },
@@ -617,7 +673,7 @@
     "annotate_start_num": 0,
     "annotation": {
       "method": 0,
-      "sort_order": 1
+      "sort_order": 0
     },
     "bom_export_filename": "${PROJECTNAME}.csv",
     "bom_fmt_presets": [],
@@ -735,6 +791,60 @@
           "label": "Sim.Device",
           "name": "Sim.Device",
           "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Sim.Params",
+          "name": "Sim.Params",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "Package",
+          "name": "Package",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MPN",
+          "name": "MPN",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MAXIMUM_PACKAGE_HEIGHT",
+          "name": "MAXIMUM_PACKAGE_HEIGHT",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "SOURCE_URL",
+          "name": "SOURCE_URL",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "MANUFACTURER",
+          "name": "MANUFACTURER",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "STANDARD",
+          "name": "STANDARD",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "DATASHEET_URL",
+          "name": "DATASHEET_URL",
+          "show": true
+        },
+        {
+          "group_by": false,
+          "label": "PARTREV",
+          "name": "PARTREV",
+          "show": false
         }
       ],
       "filter_string": "",
@@ -793,7 +903,7 @@
         "uuid": "085c23a9-2b77-46d5-99ae-42ca498b2f3f"
       }
     ],
-    "used_designators": "#FLG1-2,#PWR1-19,C1-20,D1-4,F1,J1-2,K1-2,Q1-2,R1-18,RV1,U1-3,V1",
+    "used_designators": "#FLG1-6,#PWR1-28,C1-20,D1-5,F1,HS1,J1-2,K1-2,Q1-2,R1-20,RV1,TP1-6,U1-3,V1",
     "variants": []
   },
   "sheets": [
